@@ -3,7 +3,6 @@ package xmlproducto;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 /**
  *
  * @author user
@@ -95,8 +94,7 @@ public class XMLProducto {
                     break;
                 default:
                     System.out.println("\nOpcion erronea ");
-                    break;
-                
+                    break;                
             }
         } while (n != 8);        
     }
