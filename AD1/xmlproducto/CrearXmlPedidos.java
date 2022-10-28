@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,10 +18,11 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Comment;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
@@ -38,22 +38,14 @@ public class CrearXmlPedidos {
     private DatosPedidos datosPedidos;
     private ArrayList<Pedido> pedidos;
     private String ruta; 
-    private File fileDat;
-    private File fileXml;
     private Document doc;
-    private FileOutputStream fos;
-    private ObjectOutputStream oos;  
-    private FileInputStream fis;
-    private ObjectInputStream ois;
     private Boolean aleatorio;
     
     //Constructor de generar los objetos 
     public CrearXmlPedidos(){
         pedidos = new ArrayList<Pedido>();
         datosPedidos = new DatosPedidos();
-        ruta = "pedidos";     
-        fileDat = new File(ruta+".dat");
-        fileXml = new File(ruta+".xml");        
+        ruta = "pedidos";      
         aleatorio = false;
     }
 
@@ -61,6 +53,10 @@ public class CrearXmlPedidos {
     public void setRuta(String ruta) {
         this.ruta = ruta;
     }
+
+    public void setAleatorio(Boolean aleatorio) {
+        this.aleatorio = aleatorio;
+    }        
     
     //Generar lista de pedidos con las dos opciones
     public ArrayList<Pedido> xeraListaPedidos(){
@@ -76,8 +72,9 @@ public class CrearXmlPedidos {
         if(pedidos.isEmpty()) //Si esta vacio la lista la genera
             xeraListaPedidos();
         try {
-            fos = new FileOutputStream(fileDat);
-            oos = new ObjectOutputStream(fos);
+            File f = new File(ruta+".dat");
+            FileOutputStream fos = new FileOutputStream(f);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             for(Pedido pedido : pedidos)
                 oos.writeObject(pedido);
             oos.close();
@@ -94,8 +91,9 @@ public class CrearXmlPedidos {
         if(pedidos.isEmpty() == false) 
             pedidos.removeAll(pedidos);
         try{
-            fis = new FileInputStream(fileDat);
-            ois = new ObjectInputStream(fis); 
+            File f = new File(ruta+".dat");
+            FileInputStream fis = new FileInputStream(f);
+            ObjectInputStream ois = new ObjectInputStream(fis); 
             while(fis.available() > 0){
                 pedido = (Pedido) ois.readObject();
                 pedidos.add(pedido);
@@ -121,21 +119,40 @@ public class CrearXmlPedidos {
         System.out.println();
     }
     
-    //Generar el documento Xml con todos los elementos y nodos
-    public void xeraXmlPedidos(){
-        //Crear el documento nuevo
+    private Document creaDOMBaleiro(String raiz){
+        Document doc = null;        
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             DOMImplementation implementation = db.getDOMImplementation();
             doc = implementation.createDocument
-            (null, ruta, null);
-            doc.setXmlVersion("1.0");
-            
+            (null, raiz, null);
+            doc.setXmlVersion("1.0");            
         } catch (ParserConfigurationException ex) {
-            System.out.println("Error: excepcion configuracion");
+            System.out.println("Error: en configuracion parser");
         }
-        
+        return doc;
+    }
+    
+    private void DOMaXML(Document doc, String nomeXML){
+        try{
+            File f = new File(nomeXML);
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            StreamResult result = new StreamResult(f);
+            DOMSource source = new DOMSource(doc);
+            transformer.transform(source, result);
+        }catch (TransformerConfigurationException ex) {
+            System.out.println("Error: excepion configuracion transformacion");
+        }catch(TransformerException ex) {
+            System.out.println("Error: excepcion de transformacion");
+        }
+    }
+    
+    //Generar el documento Xml con todos los elementos y nodos
+    public void xeraXmlPedidos(){
+        //Crear el documento nuevo
+        doc = creaDOMBaleiro(ruta);               
         //Crear nodos en el documento creado y guardar los datos
         int i = 0;
         for(Pedido ped: pedidos){
@@ -189,106 +206,50 @@ public class CrearXmlPedidos {
         }  
         
         //Escribir los datos guardados en un fichero nuevo con mismo nombre
-        try{
-            //File file = new File("pedidos.xml");
-            Transformer transformer = 
-                    TransformerFactory.newInstance().newTransformer();
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            StreamResult sr = new StreamResult(fileXml);
-            DOMSource source = new DOMSource(doc);
-            transformer.transform(source, sr);
-        } catch (TransformerConfigurationException ex) {
-            System.out.println("Error: excepion configuracion transformacion");
-        } catch (TransformerException ex) {
-            System.out.println("Error: excepion transformacion");
-        }     
+        DOMaXML(doc, ruta+".xml");
+        
         //Eliminar los datos de los pedidos
         if(pedidos.isEmpty() == false)
             pedidos.removeAll(pedidos);
         doc = null;
     }
-
+    
     //Leer el fichero Xml, devolver y guardar en memoria el documento
-    public Document leXmlPedidos(){
+    public Document leXmlPedidos(String nomeXML){
         Document doc = null;    
         try {
-            DocumentBuilderFactory docFactory = 
+            DocumentBuilderFactory dbf = 
                     DocumentBuilderFactory.newDefaultInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            doc = docBuilder.parse(fileXml);
-            return doc;
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            doc = db.parse(nomeXML);
         } catch (IOException | ParserConfigurationException | SAXException ex) {
             ex.printStackTrace();
         }
-        return null;
+        return doc;
     }
-    
-    //Opcion1 Mostrar por pantalla los elementos del xml en filas recursivamente
-    public void loopNodeXml(Node n) {
-        // Mostramos el nombre del nodo
-        System.out.print("\n"+n.getNodeName());//Opcion1
-        //System.out.println(n.getNodeName());//Opcion2
-        // Obtenemos sus hijos
-        NodeList hijos = n.getChildNodes();
-        for (int i = 0; i < hijos.getLength(); i++) {
-            // Obtenemos el hijo i
-            Node hijo = hijos.item(i);
-            // Si es un nodo
-            if (hijo.getNodeType() == Node.ELEMENT_NODE) {
-                // Recorremos el hijo recursivamente
-                loopNodeXml(hijo);
-                // Atributos 
-                if (hijo.getAttributes() != null 
-                        && hijo.getAttributes().getLength() > 0) {
-                    NamedNodeMap atributos = hijo.getAttributes();
-                    for (int j = 0; j < atributos.getLength(); j++) {
-                        Node attr = atributos.item(j);
-                        // Recorremos el atributo recursivamente
-                        loopNodeXml(attr);
-                    }
-                }
-                // si el nodo es un texto y no esta vacio
-            } else if (hijo.getNodeType() == Node.TEXT_NODE 
-                    && !hijo.getTextContent().trim().isEmpty()) {
-                // Mostramos el contenido
-                System.out.print(" = "+hijo.getTextContent());//Opcion1
-                //System.out.println("Valor: " + hijo.getTextContent());//Opcion2
+        
+    public void mostraContidoElemento(Element element){
+        NodeList nodos = element.getChildNodes();
+        for (int i = 0; i < nodos.getLength(); i++) {
+            Node n = nodos.item(i);
+            switch(n.getNodeType()){
+                case Node.ELEMENT_NODE:
+                    Element e = (Element) n;
+                    System.out.println("Etiqueta:" + e.getTagName());
+                    mostraContidoElemento(e);
+                    break;
+                case Node.TEXT_NODE:
+                    Text t = (Text) n;
+                    System.out.println("Texto:" + t.getWholeText());
+                    break;
+                case Node.ATTRIBUTE_NODE:
+                    Attr a = (Attr) n;
+                    break;
+                case Node.COMMENT_NODE:
+                    Comment c = (Comment) n;
+                    break;
             }
         }
-    }
-    
-    //Opcion2 Convertir el XML en un solo String mostrable en consola
-    //https://myskillpoint.com/convert-string-to-xml-and-xml-to-string-in-java/
-    public String convertXMLDocumentToString(Document xmlDoc) {
-    	//Create a new object of TransformerFactory
-    	TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer;       
-        try {
-            transformer = transformerFactory.newTransformer();
-            //Creating object of the Source document that is xml doc
-            DOMSource source = new DOMSource(xmlDoc);
-            StringWriter strWriter = new StringWriter();
-            StreamResult stResult = new StreamResult(strWriter);
-            transformer.transform(source, stResult);
-            String xmlString = strWriter.getBuffer().toString();
-            return xmlString;
-        } catch (TransformerConfigurationException ex) {
-            System.out.println("Error: excepion configuracion transformacion");
-        } catch (TransformerException e) {
-            System.out.println("Error: excepion transformacion");
-        } 
-        return null;
-    }
-    
-    //Opcion3 Mostrar el String unico del documento xml separado por etiquetas
-    public void mostraXML(String xmlString) {
-        for(int i = 0; i < xmlString.length(); i++){
-            System.out.print(xmlString.charAt(i));
-        if(xmlString.charAt(i) == '>')                        
-            System.out.println();
-        else if(xmlString.charAt(i+1) == '<')
-            System.out.println();
-        } 
     }
 }
 

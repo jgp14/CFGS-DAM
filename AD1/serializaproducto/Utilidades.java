@@ -18,11 +18,7 @@ public class Utilidades {
     //Atributos declarados de Utilidades
     private DatosProdutos datos;
     private ArrayList<Produto> produtos;
-    private File fichero;
-    private FileOutputStream fos;
-    private ObjectOutputStream oos;  
-    private FileInputStream fis;
-    private ObjectInputStream ois;
+    private File fichero; 
 
     //Crear los objetos de los atributos
     public Utilidades(){
@@ -40,8 +36,8 @@ public class Utilidades {
     //Guardar produtos en el fichero
     public void guardarProdutos() {
         try {
-            fos = new FileOutputStream(fichero);
-            oos = new ObjectOutputStream(fos);
+            FileOutputStream fos = new FileOutputStream(fichero);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             for(Produto producto : produtos)
                 oos.writeObject(producto);
             oos.close(); 
@@ -58,8 +54,8 @@ public class Utilidades {
     public void leerProdutos(){
         Produto produto = null;
         try{
-            fis = new FileInputStream(fichero);
-            ois = new ObjectInputStream(fis); 
+            FileInputStream fis = new FileInputStream(fichero);
+            ObjectInputStream ois = new ObjectInputStream(fis); 
             while(fis.available() > 0){
                 produto = (Produto) ois.readObject();
                 produtos.add(produto);

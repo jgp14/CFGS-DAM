@@ -40,10 +40,10 @@ public class DatosPedidos {
         listaProdutos2.add(produtos.get(4));
         
         ArrayList<Produto> listaProdutos3 = new ArrayList<>();
-        listaProdutos2.add(produtos.get(0));
-        listaProdutos2.add(produtos.get(1));
-        listaProdutos2.add(produtos.get(3));
-        
+        listaProdutos3.add(produtos.get(0));
+        listaProdutos3.add(produtos.get(1));
+        listaProdutos3.add(produtos.get(3));
+       
         Object[] matrizListaProdutos = 
         {listaProdutos0, listaProdutos1, listaProdutos2, listaProdutos3};
         

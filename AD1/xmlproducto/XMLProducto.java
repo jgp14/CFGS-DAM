@@ -2,6 +2,7 @@ package xmlproducto;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import org.w3c.dom.Document;
 
 /**
  *
@@ -43,10 +44,14 @@ public class XMLProducto {
     public static void main(String[] args) {
         //Programa para elegir entre metodos de la clase CrearXmlPedidos        
         int n = 0;
-        String xmlString, arquivo = "pedidos";        
+        String arquivo = "pedidos";     
+        Document doc = null;
         Scanner s = new Scanner(System.in);
         CrearXmlPedidos crearXmlPedidos = new CrearXmlPedidos();
+        //establecer la ruta de los ficheros dat y xml
         crearXmlPedidos.setRuta(arquivo);
+        //Generar datos normal (false) o aleatorios (true)
+        crearXmlPedidos.setAleatorio(false);
         do{
             menuPedidos();
             System.out.print("\nDame opcion: ");
@@ -74,20 +79,12 @@ public class XMLProducto {
                     break;                
                 case 6:
                     System.out.println("\nLeyendo xml de elementos: ");
-                    crearXmlPedidos.leXmlPedidos();            
+                    doc = crearXmlPedidos.leXmlPedidos(arquivo+".xml");            
                     break;
                 case 7:
-                    System.out.println("\nManeras de mostrar documento xml: ");
-                    System.out.println("\nOpcion1 mostrar xml como un String");
-                    xmlString = crearXmlPedidos.convertXMLDocumentToString
-                    (crearXmlPedidos.leXmlPedidos());
-                    System.out.println(xmlString);
-                    System.out.println("\nOpcion2 mostrar xml como etiquetas");
-                    crearXmlPedidos.mostraXML(xmlString);
-                    System.out.println("\nOpcion3 mostrar xml como un loop");
-                    crearXmlPedidos.loopNodeXml
-                    (crearXmlPedidos.leXmlPedidos().getDocumentElement());
-                    System.out.println();
+                    System.out.println("\nMostrando xml de elementos: ");
+                    crearXmlPedidos.mostraContidoElemento
+                    (doc.getDocumentElement());
                     break;
                 case 8:
                     System.out.println("\nFINAL");
