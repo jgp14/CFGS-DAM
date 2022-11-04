@@ -1,0 +1,27 @@
+<produtos>
+  <produto>
+    <idProduto>1</idProduto>
+    <descricion>USB 3.1</descricion>
+    <prezo>5.0</prezo>
+  </produto>
+  <produto>
+    <idProduto>2</idProduto>
+    <descricion>Raton</descricion>
+    <prezo>8.0</prezo>
+  </produto>
+  <produto>
+    <idProduto>3</idProduto>
+    <descricion>Teclado</descricion>
+    <prezo>10.0</prezo>
+  </produto>
+  <produto>
+    <idProduto>4</idProduto>
+    <descricion>Disco externo</descricion>
+    <prezo>30.0</prezo>
+  </produto>
+  <produto>
+    <idProduto>5</idProduto>
+    <descricion>Cascos</descricion>
+    <prezo>12.0</prezo>
+  </produto>
+</produtos>
