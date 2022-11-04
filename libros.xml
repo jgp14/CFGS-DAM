@@ -1,0 +1,82 @@
+<libros>
+  <libro>
+    <ISBN>1A</ISBN>
+    <Titulo>Principito</Titulo>
+    <Autores>
+      <Autor>autor1Principito</Autor>
+      <Autor>autor2Principito</Autor>
+    </Autores>
+    <Ano>1950</Ano>
+    <Prestado>false</Prestado>
+    <lector>
+      <nome>Marco</nome>
+      <dni>11122233B</dni>
+    </lector>
+  </libro>
+  <libro>
+    <ISBN>2B</ISBN>
+    <Titulo>MobyDick</Titulo>
+    <Autores>
+      <Autor>autor1MobyDick</Autor>
+      <Autor>autor2MobyDick</Autor>
+    </Autores>
+    <Ano>1850</Ano>
+    <Prestado>true</Prestado>
+    <lector>
+      <nome>Beatriz</nome>
+      <dni>22233344C</dni>
+    </lector>
+  </libro>
+  <libro>
+    <ISBN>3C</ISBN>
+    <Titulo>Viaje a la Luna</Titulo>
+    <Autores>
+      <Autor>Julio Verne</Autor>
+    </Autores>
+    <Ano>1890</Ano>
+    <Prestado>false</Prestado>
+    <lector>
+      <nome>Cesar</nome>
+      <dni>33344455D</dni>
+    </lector>
+  </libro>
+  <libro>
+    <ISBN>4D</ISBN>
+    <Titulo>Fundacion</Titulo>
+    <Autores>
+      <Autor>Arthur C.Clarke</Autor>
+    </Autores>
+    <Ano>1970</Ano>
+    <Prestado>true</Prestado>
+    <lector>
+      <nome>Fran</nome>
+      <dni>44455566F</dni>
+    </lector>
+  </libro>
+  <libro>
+    <ISBN>5E</ISBN>
+    <Titulo>Harry Potter</Titulo>
+    <Autores>
+      <Autor>J. K. Rowling</Autor>
+    </Autores>
+    <Ano>1996</Ano>
+    <Prestado>false</Prestado>
+    <lector>
+      <nome>Rosa</nome>
+      <dni>55566677G</dni>
+    </lector>
+  </libro>
+  <libro>
+    <ISBN>6F</ISBN>
+    <Titulo>Camino hacia el ajedrez </Titulo>
+    <Autores>
+      <Autor>Alex Yermolinsky</Autor>
+    </Autores>
+    <Ano>1980</Ano>
+    <Prestado>true</Prestado>
+    <lector>
+      <nome>Graciela</nome>
+      <dni>66677788A</dni>
+    </lector>
+  </libro>
+</libros>
