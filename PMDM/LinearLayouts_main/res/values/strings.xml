@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">UF1_LinearLayout</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Escribe tu nombre</string>
+    <string name="prompt_password">Escribe tu contraseña</string>
+    <string name="action_sign_in">INICIAR SESIÓN</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
