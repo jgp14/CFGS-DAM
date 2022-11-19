@@ -1,9 +1,8 @@
 package pedidos;
 
-import java.util.ArrayList;
 import java.util.List;
-import serializaproducto.LeerMejor;
-import xstream.UtilidadesXStream;
+import utilidades.LeerMejor;
+import utilidades.UtilidadesXStream;
 
 /**
  *
@@ -11,24 +10,14 @@ import xstream.UtilidadesXStream;
  */
 public class PedidosMain {
     
-    public static void menuPedidos() {
-	System.out.println();
-        System.out.println("     PEDIDOS");
-	System.out.println(" 1.- Escribir pedidos json");
-        System.out.println(" 2.- Escribir peiddos xml");
-	System.out.println(" 3.- Leer y mostrar pedidos json");
-        System.out.println(" 4.- FINAL");
-    } 
-    
     public static void main(String[] args){
-        UtilidadesJson json = new UtilidadesJson();
         int n = 0;
+        UtilidadesJson json = new UtilidadesJson();        
         String ruta = "pedidos";         
         UtilidadesXStream uxs = new UtilidadesXStream();
-        
         List<Pedido> pedidos = json.xeraPedidos();
         do{ 
-            menuPedidos();
+            json.menuPedidos();
             System.out.print("\nDame opcion: ");
             n = LeerMejor.datoShort();
             switch(n){

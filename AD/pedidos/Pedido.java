@@ -16,12 +16,11 @@ public class Pedido {
     public Pedido(){}
     
     public Pedido(int id, Cliente cliente, 
-            List<LineaPedido> lineasPedido, 
-            int importe, boolean entregado) {
+            List<LineaPedido> lineasPedido, boolean entregado) {
         this.id = id;
         this.cliente = cliente;
         this.lineasPedido = lineasPedido;
-        this.importe = importe;
+        this.importe = calculaImporte();
         this.entregado = entregado;
     }
 
@@ -71,5 +70,12 @@ public class Pedido {
                 ", cliente=" + cliente + ", lineasPedido=" + lineasPedido + 
                 ", importe=" + importe + ", entregado=" + entregado + '}';
     }    
+    
+    private int calculaImporte(){
+        importe = 0;
+        for(LineaPedido lineaPedido: lineasPedido)
+            importe = importe + lineaPedido.getPrezoTotal();
+        return importe;
+    }
     
 }
