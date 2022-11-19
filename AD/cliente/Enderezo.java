@@ -2,7 +2,7 @@ package cliente;
 
 /**
  *
- * @author user
+ * @author dam205
  */
 public class Enderezo {
     private String rua;

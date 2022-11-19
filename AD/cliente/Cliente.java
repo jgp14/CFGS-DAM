@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author user
+ * @author dam205
  */
 public class Cliente {
     private String dni;

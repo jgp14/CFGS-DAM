@@ -13,24 +13,40 @@ import org.json.simple.parser.ParseException;
 
 /**
  *
- * @author marco
+ * @author dam205
  */
 public class UtilidadesJSONCliente {
     
     public List<Cliente> createClientes(){
-        List<Cliente> clientes = new ArrayList<>();        
-        Cliente cliente0 = new Cliente("11122233B", "Marco", "Magan Sanz");
-        cliente0.getEnderezos().add(new Enderezo("Nova", 1, 15910));
-        cliente0.getEnderezos().add(new Enderezo("Vella", 2, 15920));
-        Cliente cliente1 = new Cliente("22233344C", "Beatriz", "Martinez Garcia");
-        cliente1.getEnderezos().add(new Enderezo("Montero Rios", 3, 15930));
-        cliente1.getEnderezos().add(new Enderezo("Horreo", 4, 15940));        
-        Cliente cliente2 = new Cliente("33344455D", "Rocio", "Torres Fungueiro");
-        cliente2.getEnderezos().add(new Enderezo("General", 5, 15950));
-        cliente2.getEnderezos().add(new Enderezo("Europa", 6, 15960));        
-        clientes.add(cliente0);
-        clientes.add(cliente1);
-        clientes.add(cliente2);        
+        List<Cliente> clientes = new ArrayList<>();
+        clientes = datosClientes(clientes);
+        clientes = datosEnderezos(clientes);
+        return clientes;
+    }
+    
+    private List<Cliente> datosClientes(List<Cliente> clientes){
+        clientes.add(new Cliente
+        ("11122233B", "Marco", "Magan Sanz"));
+        clientes.add(new Cliente
+        ("22233344C", "Beatriz", "Martinez Garcia"));
+        clientes.add(new Cliente
+        ("33344455D", "Rocio", "Torres Fungueiro")); 
+        return clientes;
+    }
+    
+    private List<Cliente> datosEnderezos(List<Cliente> clientes){
+        clientes.get(0).getEnderezos().add
+        (new Enderezo("Nova", 1, 15910));
+        clientes.get(0).getEnderezos().add
+        (new Enderezo("Vella", 2, 15920));
+        clientes.get(1).getEnderezos().add
+        (new Enderezo("Montero Rios", 3, 15930));
+        clientes.get(1).getEnderezos().add
+        (new Enderezo("Horreo", 4, 15940));       
+        clientes.get(2).getEnderezos().add
+        (new Enderezo("General", 5, 15950));
+        clientes.get(2).getEnderezos().add
+        (new Enderezo("Europa", 6, 15960));    
         return clientes;
     }
     
@@ -54,25 +70,27 @@ public class UtilidadesJSONCliente {
         }
     }
     
-    public JSONObject writeCliente(Cliente cli) {
-        //Creación de OBJETO JSON
-        JSONObject obj = new JSONObject();
-        //Se le añaden datos en formato clave-valor
-        obj.put("dni", cli.getDni());
-        obj.put("nome", cli.getNome());
-        obj.put("apelidos", cli.getApelidos());
-        
+    private JSONArray writeEnderezos(Cliente cli){
         //Para las listas, almacenamos los valores en un JSONArray
         JSONArray jArray = new JSONArray();
-        int i = 0;
         for (Enderezo enderezo : cli.getEnderezos()) {                                                     
             JSONObject subobj = new JSONObject();
             subobj.put("rua", enderezo.getRua());
             subobj.put("numero", enderezo.getNumero());
             subobj.put("codigoPostal", enderezo.getCodigoPostal());            
             jArray.add(subobj);             
-            i++;
         }
+        return jArray;
+    }
+    
+    private JSONObject writeCliente(Cliente cli) {
+        //Creación de OBJETO JSON
+        JSONObject obj = new JSONObject();
+        //Se le añaden datos en formato clave-valor
+        obj.put("dni", cli.getDni());
+        obj.put("nome", cli.getNome());
+        obj.put("apelidos", cli.getApelidos());        
+        JSONArray jArray = writeEnderezos(cli);
         obj.put("enderezos", jArray);        
         return obj;
     }
@@ -124,7 +142,7 @@ public class UtilidadesJSONCliente {
             System.out.println(clientes.get(i));  
     }
             
-    public static void menuClientes() {
+    public static final void menuClientes() {
 	System.out.println();
         System.out.println("     CLIENTES");
 	System.out.println(" 1.- Escribir clientes json");

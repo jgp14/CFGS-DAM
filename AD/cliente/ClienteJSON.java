@@ -1,19 +1,15 @@
 package cliente;
 
-import java.util.ArrayList;
 import java.util.List;
-import serializaproducto.LeerMejor;
-import xstream.UtilidadesXStream;
+import utilidades.LeerMejor;
+import utilidades.UtilidadesXStream;
 
 /**
  *
- * @author marco
+ * @author dam205
  */
 public class ClienteJSON {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {                
         int n = 0;
         String ruta = "clientes";        
