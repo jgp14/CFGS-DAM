@@ -1,0 +1,124 @@
+<modulos>
+  <modulos>
+    <modulo>
+      <curso>2</curso>
+      <descripcion>Proyecto</descripcion>
+      <alumnos>
+        <alumno>
+          <nombre>Rodrigo</nombre>
+          <dni>9I</dni>
+        </alumno>
+        <alumno>
+          <nombre>Maria</nombre>
+          <dni>5E</dni>
+        </alumno>
+        <alumno>
+          <nombre>Pepe</nombre>
+          <dni>1A</dni>
+        </alumno>
+        <alumno>
+          <nombre>Carmen</nombre>
+          <dni>11K</dni>
+        </alumno>
+        <alumno>
+          <nombre>Juan</nombre>
+          <dni>2B</dni>
+        </alumno>
+        <alumno>
+          <nombre>Laura</nombre>
+          <dni>3C</dni>
+        </alumno>
+      </alumnos>
+      <unidades>
+        <unidad>
+          <titulo>Unidad 7</titulo>
+          <descripcion>Concurrencia</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 6</titulo>
+          <descripcion>XML</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 4</titulo>
+          <descripcion>Objetos</descripcion>
+        </unidad>
+      </unidades>
+    </modulo>
+    <modulo>
+      <curso>1</curso>
+      <descripcion>Programacion</descripcion>
+      <alumnos>
+        <alumno>
+          <nombre>Maria</nombre>
+          <dni>5E</dni>
+        </alumno>
+        <alumno>
+          <nombre>Jose</nombre>
+          <dni>6F</dni>
+        </alumno>
+      </alumnos>
+      <unidades>
+        <unidad>
+          <titulo>Unidad 4</titulo>
+          <descripcion>Objetos</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 8</titulo>
+          <descripcion>Hilos</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 2</titulo>
+          <descripcion>Conectores</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 5</titulo>
+          <descripcion>Seguridad</descripcion>
+        </unidad>
+      </unidades>
+    </modulo>
+    <modulo>
+      <curso>2</curso>
+      <descripcion>Moviles</descripcion>
+      <alumnos>
+        <alumno>
+          <nombre>Pepe</nombre>
+          <dni>1A</dni>
+        </alumno>
+        <alumno>
+          <nombre>Ines</nombre>
+          <dni>8H</dni>
+        </alumno>
+        <alumno>
+          <nombre>Carlos</nombre>
+          <dni>10J</dni>
+        </alumno>
+        <alumno>
+          <nombre>Carmen</nombre>
+          <dni>11K</dni>
+        </alumno>
+        <alumno>
+          <nombre>Sofia</nombre>
+          <dni>4D</dni>
+        </alumno>
+        <alumno>
+          <nombre>Maria</nombre>
+          <dni>5E</dni>
+        </alumno>
+      </alumnos>
+      <unidades>
+        <unidad>
+          <titulo>Unidad 7</titulo>
+          <descripcion>Concurrencia</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 1</titulo>
+          <descripcion>Ficheros</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 4</titulo>
+          <descripcion>Objetos</descripcion>
+        </unidad>
+      </unidades>
+    </modulo>
+  </modulos>
+</modulos>
