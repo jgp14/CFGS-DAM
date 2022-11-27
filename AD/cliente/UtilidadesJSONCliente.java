@@ -1,9 +1,10 @@
 package cliente;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.StreamException;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.security.AnyTypePermission;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.simple.JSONArray;
@@ -31,6 +32,10 @@ public class UtilidadesJSONCliente {
         ("22233344C", "Beatriz", "Martinez Garcia"));
         clientes.add(new Cliente
         ("33344455D", "Rocio", "Torres Fungueiro")); 
+        clientes.add(new Cliente
+        ("44455566F", "Rosa Maria", "Busto Regueira"));
+        clientes.add(new Cliente
+        ("55566677G", "Cesar", "Rodriguez Dorado"));
         return clientes;
     }
     
@@ -46,109 +51,134 @@ public class UtilidadesJSONCliente {
         clientes.get(2).getEnderezos().add
         (new Enderezo("General", 5, 15950));
         clientes.get(2).getEnderezos().add
-        (new Enderezo("Europa", 6, 15960));    
+        (new Enderezo("Europa", 6, 15960));
+        clientes.get(3).getEnderezos().add
+        (new Enderezo("Gasset", 13, 15970));
+        clientes.get(3).getEnderezos().add
+        (new Enderezo("Venecia", 4, 15980));       
+        clientes.get(4).getEnderezos().add
+        (new Enderezo("Plaza Mayor", 5, 15990));
+        clientes.get(4).getEnderezos().add
+        (new Enderezo("Plaza Menor", 6, 15900)); 
         return clientes;
     }
     
-    public void writeJSONObject(JSONObject obj, String ruta){
-        try {
-            FileWriter fichero = new FileWriter(ruta);
-            fichero.write(obj.toJSONString());
-            fichero.close();
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+    public void guardarClientes(String ruta, List<Cliente> clientes){
+        JSONArray arrayClientes = new JSONArray();
+        for(Cliente c: clientes)
+            arrayClientes.add(creaJsonCliente(c));        
+        writeJSONArray(arrayClientes, ruta);
     }
     
-    public void writeJSONArray (JSONArray jArray, String ruta){
+    private JSONObject creaJsonCliente(Cliente c){
+        JSONObject objC = new JSONObject();
+        objC.put("dni", c.getDni());
+        objC.put("nome", c.getNome());
+        objC.put("apelidos", c.getApelidos());
+        
+        JSONArray arrayEnderezos = new JSONArray();
+        for (Enderezo e : c.getEnderezos()) 
+            arrayEnderezos.add(creaJsonEnderezo(e));  
+        objC.put("enderezos", arrayEnderezos);
+        return objC;
+    }
+    
+    private JSONObject creaJsonEnderezo(Enderezo e){
+        JSONObject objE = new JSONObject();
+        objE.put("rua", e.getRua());
+        objE.put("numero", e.getNumero());
+        objE.put("codigoPostal", e.getCodigoPostal());
+        return objE;
+    }
+    
+    private void writeJSONArray(JSONArray jArray, String ruta){
         try {
             FileWriter fichero = new FileWriter(ruta);
             fichero.write(jArray.toJSONString());
             fichero.close();
-        } catch (IOException ex) {
-            System.out.println(ex);
+        } catch (IOException ex) {e(ex);}
+    }
+    
+    private void e(Exception ex){ex.printStackTrace();}
+    
+    public List<Cliente> leerClientes(String ruta){
+        List<Cliente> clientes = new ArrayList<>();
+        JSONArray arrayClientes = readJSONArray(ruta);
+        for(Object o: arrayClientes){
+            JSONObject objC = (JSONObject) o;
+            clientes.add(recuperaCliente(objC));
         }
+        return clientes;
     }
     
-    private JSONArray writeEnderezos(Cliente cli){
-        //Para las listas, almacenamos los valores en un JSONArray
-        JSONArray jArray = new JSONArray();
-        for (Enderezo enderezo : cli.getEnderezos()) {                                                     
-            JSONObject subobj = new JSONObject();
-            subobj.put("rua", enderezo.getRua());
-            subobj.put("numero", enderezo.getNumero());
-            subobj.put("codigoPostal", enderezo.getCodigoPostal());            
-            jArray.add(subobj);             
+    private Cliente recuperaCliente(JSONObject objC){
+        Cliente c = new Cliente();
+        c.setDni((String) objC.get("dni"));
+        c.setNome((String) objC.get("nome"));
+        c.setApelidos((String) objC.get("apelidos"));
+        
+        List<Enderezo> enderezos = new ArrayList<>();
+        JSONArray arrayEnderezos = (JSONArray) objC.get("enderezos");
+        for(Object o: arrayEnderezos){
+            JSONObject objE = (JSONObject) o;
+            enderezos.add((recuperaEnderezo(objE))); 
         }
-        return jArray;
+        c.setEnderezos(enderezos);
+        return c;
+    }
+        
+    private Enderezo recuperaEnderezo(JSONObject objE) {
+        Enderezo e = new Enderezo();
+        e.setRua((String) objE.get("rua"));
+        e.setNumero((int)(long) objE.get("numero"));
+        e.setCodigoPostal((int)(long) objE.get("codigoPostal"));
+        return e;
     }
     
-    private JSONObject writeCliente(Cliente cli) {
-        //Creación de OBJETO JSON
-        JSONObject obj = new JSONObject();
-        //Se le añaden datos en formato clave-valor
-        obj.put("dni", cli.getDni());
-        obj.put("nome", cli.getNome());
-        obj.put("apelidos", cli.getApelidos());        
-        JSONArray jArray = writeEnderezos(cli);
-        obj.put("enderezos", jArray);        
-        return obj;
-    }
-    
-    public void writeClientes(List<Cliente> clientes, String ruta){
-        JSONArray jArray = new JSONArray();
-        for(Cliente cliente: clientes)
-            jArray.add(writeCliente(cliente));        
-        writeJSONArray(jArray, ruta);
-    }
-    
-    public JSONObject readJSONObject(String ruta){
-        JSONObject obj = new JSONObject();
-        JSONParser parser = new JSONParser();
-        try{
-            FileReader fichero = new FileReader(ruta);
-            obj = (JSONObject) parser.parse(fichero);
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex);
-        } catch (IOException | ParseException ex) {
-            System.out.println(ex);
-        }       
-        return obj;
-    }    
-    
-    public JSONArray readJSONArray(String ruta){
+    private JSONArray readJSONArray(String ruta){
         JSONArray jArray = new JSONArray();
         JSONParser parser = new JSONParser();
         try{
             FileReader fichero = new FileReader(ruta);
             jArray = (JSONArray) parser.parse(fichero);
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex);
-        } catch (IOException | ParseException ex) {
-            System.out.println(ex);
-        }       
+        } catch (FileNotFoundException ex) {e(ex);} 
+        catch (IOException | ParseException ex) {e(ex); }       
         return jArray;
-    }    
+    } 
     
-    public List<Cliente> readClientes(String ruta){
-        JSONArray jArray = readJSONArray(ruta);
-        List<Cliente> clientes = (List<Cliente>) jArray;
-        return clientes;
+    public void MostraJsonClientes(List<Cliente> list){
+        for(Cliente c: list)
+            System.out.println(c);
     }
-    
-    public void mostraClientes(String ruta){
-        List<Cliente> clientes = readClientes(ruta+".json");
-        for(int i = 0; i<clientes.size(); i++)
-            System.out.println(clientes.get(i));  
+
+    public void crearXMLClientes(String ruta){
+        ListaClientes lista = new ListaClientes();
+        try{            
+            lista.setClientes((List<Cliente>)leerClientes(ruta+".json"));
+            XStream xs = new XStream();
+            xs.setMode(XStream.NO_REFERENCES);
+            xs.alias("enderezo", Enderezo.class);
+            xs.alias("enderezos", List.class);
+            xs.alias("cliente", Cliente.class);
+            xs.alias("clientes", ListaClientes.class); 
+            xs.toXML(lista, new FileOutputStream(new File(ruta+".xml")));
+        } catch(FileNotFoundException ex){e(ex);};
+    } 
+        
+    public void mostrarXMLClientes(String ruta){
+        XStream xs = new XStream(new DomDriver());
+        xs.setMode(XStream.NO_REFERENCES);
+        xs.alias("enderezo", Enderezo.class);
+        xs.alias("enderezos", List.class);
+        xs.alias("cliente", Cliente.class);
+        xs.alias("clientes", ListaClientes.class); 
+        xs.addPermission(AnyTypePermission.ANY);
+        ListaClientes lista = new ListaClientes();
+        try {
+            xs.fromXML(new FileInputStream(ruta), lista);
+            System.out.println("\nLista de clientes: "+ruta);
+            MostraJsonClientes(lista.getClientes());
+        } catch (FileNotFoundException | StreamException ex) {e(ex);}
     }
-            
-    public static final void menuClientes() {
-	System.out.println();
-        System.out.println("     CLIENTES");
-	System.out.println(" 1.- Escribir clientes json");
-        System.out.println(" 2.- Escribir clientes xml");
-	System.out.println(" 3.- Leer y mostrar clientes json");
-        System.out.println(" 4.- FINAL");
-    }   
-    
+   
 }

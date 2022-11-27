@@ -1,10 +1,12 @@
 package cliente;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dam205
  */
-public class Enderezo {
+public class Enderezo implements Serializable{
     private String rua;
     private int numero;
     private int codigoPostal;

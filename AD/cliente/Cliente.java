@@ -1,5 +1,6 @@
 package cliente;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  *
  * @author dam205
  */
-public class Cliente {
+public class Cliente implements Serializable{
     private String dni;
     private String nome;
     private String apelidos;

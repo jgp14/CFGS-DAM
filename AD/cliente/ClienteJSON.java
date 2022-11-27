@@ -1,38 +1,44 @@
 package cliente;
 
 import java.util.List;
-import utilidades.LeerMejor;
-import utilidades.UtilidadesXStream;
 
 /**
  *
  * @author dam205
  */
 public class ClienteJSON {
-
-    public static void main(String[] args) {                
-        int n = 0;
+    //
+    public static void main(String[] args){
         String ruta = "clientes";        
         UtilidadesJSONCliente json = new UtilidadesJSONCliente();        
-        UtilidadesXStream uxs = new UtilidadesXStream();
         List<Cliente> clientes = json.createClientes();
+        json.guardarClientes(ruta+".json", clientes);
+        json.crearXMLClientes(ruta);
+        json.mostrarXMLClientes(ruta+".xml");
+        System.out.println("\nLista de clientes: "+ruta+".json");
+        json.MostraJsonClientes(json.leerClientes(ruta+".json"));
+    }//
+    
+    /*
+    public static void main(String[] args) {                
+        String ruta = "clientes";
+        UtilidadesJSONCliente json = new UtilidadesJSONCliente();        
+        List<Cliente> clientes = json.createClientes();
+        int n = 0;
         do{ 
-            json.menuClientes();
-            System.out.print("\nDame opcion: ");
+            menuClientes();
             n = LeerMejor.datoShort();
             switch(n){
                 case 1:
-                    System.out.println("\nEscrita lista de clientes en json");
-                    json.writeClientes(clientes, ruta+".json");
+                    json.guardarClientes(ruta+".json", clientes);
                     break;
                 case 2:
-                    System.out.println("\nEscrita lista de clientes en xml");
-                    uxs.listToXML(ruta, "cliente", "enderezo", Cliente.class, 
-                            Enderezo.class, clientes);
+                    json.crearXMLClientes(ruta);
+                    json.mostrarXMLClientes(ruta+".xml");
                     break;
                 case 3:
-                    System.out.println("\nLeida lista de clientes desde json");
-                    json.mostraClientes(ruta);
+                    System.out.println("\nLista de clientes: "+ruta+".json");
+                    json.MostraJsonClientes(json.leerClientes(ruta+".json"));
                     break;                    
                 case 4:                    
                     System.out.println("\nFINAL");
@@ -43,5 +49,14 @@ public class ClienteJSON {
             }
         } while(n !=4);        
     }
+    
+    private static final void menuClientes() {
+        System.out.println("\n     CLIENTES");
+	System.out.println(" 1.- Escribir clientes.json");
+        System.out.println(" 2.- Escribir clientes.xml y Mostrar");
+	System.out.println(" 3.- Leer y Mostrar clientes.json");
+        System.out.println(" 4.- FINAL");
+        System.out.print("\nDame opcion: ");
+    }*/
 
 }
