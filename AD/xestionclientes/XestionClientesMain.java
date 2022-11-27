@@ -1,92 +1,89 @@
 package xestionclientes;
 
-import java.util.ArrayList;
 import java.util.List;
 import pedidos.Cliente;
-import utilidades.LeerMejor;
+import cliente.LeerMejor;
 
 /**
  *
  * @author dam205
  */
 public class XestionClientesMain {
-    
-    public static final void menuXestionClientes() {
-	System.out.println();
-        System.out.println("     XESTION CLIENTES");
-	System.out.println(" 1.- Escribir clientes json");
-	System.out.println(" 2.- Leer y mostrar clientes json");
-        System.out.println(" 3.- Escribir contactos json");
-	System.out.println(" 4.- Leer y mostrar contactos json");
-        System.out.println(" 5.- Escribir contactos en xml");
-	System.out.println(" 6.- Escribir contactos en dat");
-        System.out.println(" 7.- Leer, mostrar contactos dat");
-	System.out.println(" 8.- Leer, mostrar contactos xml");
-        System.out.println(" 9.- FINAL");
-    } 
-    
+    //
     public static void main(String[] args){
         XestionClientes xc = new XestionClientes();
-        int n = 0;
-        String rutaClientes = "clientes";  
-        List<Cliente> clientes = new ArrayList<>();
-        String rutaContactos = "contactos";
-        List<Contacto> contactos = new ArrayList<>();
+        String rCli = "clientes";
+        List<Cliente> clientes = xc.xeraListaClientes();
+        xc.gardaJsonClientes(rCli+".json", clientes);
         
+        String rCon = "contactos";
+        List<Enderezo> ends = xc.xeraEnderezos();
+        List<Contacto> contactos = xc.xeraListaContactos(rCli+".json",ends);
+        xc.gardaJsonContactos(rCon+".json", contactos);
+        xc.mostraJsonContactos(rCon+".json");
+        xc.gardaXmlJsonContactos(rCon);
+        xc.gardaDatJsonContactos(rCon);
+        xc.leMostraDatContactos(rCon);
+        xc.leMostraXmlContactos(rCon+".xml");
+    }//
+    
+    /*
+    public static void main(String[] args){
+        XestionClientes xc = new XestionClientes();
+        String rCli = "clientes";  
+        List<Cliente> clientes;
+        String rCon = "contactos";
+        List<Contacto> contactos;
+        int n = 0;
         do{ 
             menuXestionClientes();
-            System.out.print("\nDame opcion: ");
             n = LeerMejor.datoShort();
             switch(n){
                 case 1:
-                    System.out.println("\nEscrita lista de clientes en json");
                     clientes = xc.xeraListaClientes();
-                    xc.gardaJsonClientes(rutaClientes+".json");    
+                    xc.gardaJsonClientes(rCli+".json", clientes);   
                     break;
-               case 2:
-                    System.out.println("\nLeida y mostrada lista de clientes");
-                    clientes = xc.leJsonClientes(rutaClientes+".json");
-                    for(int i = 0; i < clientes.size(); i++)
-                        System.out.println(clientes.get(i));
+                case 2:
+                    List<Enderezo> ends = xc.xeraEnderezos();
+                    contactos = xc.xeraListaContactos(rCli+".json",ends);
+                    xc.gardaJsonContactos(rCon+".json", contactos);
                     break;
-               case 3:
-                    System.out.println("\nEscrita lista de contactos en json");
-                    contactos = xc.xeraListaContactos();
-                    xc.gardaJsonContactos(rutaContactos+".json");    
+                case 3:
+                    xc.mostraJsonContactos(rCon+".json");
+                    break;            
+                case 4:
+                    xc.gardaXmlJsonContactos(rCon);
                     break;
-               case 4:
-                    System.out.println("\nLeida y mostrada lista de contactos");
-                    contactos = xc.leJsonContactos(rutaContactos+".json");
-                    xc.mostraJsonContactos(contactos, rutaContactos);
+                case 5:
+                    xc.gardaDatJsonContactos(rCon);
                     break;                       
-               case 5:
-                    System.out.println("\nEscrita lista de contactos en xml");
-                    contactos = xc.xeraListaContactos();
-                    xc.gardaXmlJsonContactos(contactos, rutaContactos);    
-                    contactos.removeAll(contactos);
-                    break;
-               case 6:
-                    System.out.println("\nEscrita lista de contactos en dat");
-                    xc.gardaDatJsonContactos(rutaContactos);
-                    break;                       
+                case 6:
+                    xc.leMostraDatContactos(rCon);
+                    break;   
                 case 7:
-                    System.out.println("\nLeeida, mostrada lista contactos dat");
-                    xc.leMostraDatContactos(rutaContactos);
+                    xc.leMostraXmlContactos(rCon+".xml");
                     break;   
-                case 8:
-                    System.out.println("\nLeeida, mostrada lista contactos xml");
-                    xc.leMostraXmlContactos(rutaContactos);
-                    break;   
-                case 9:                    
+                case 8:                    
                     System.out.println("\nFINAL");
                     break;
                 default:
                     System.out.println("\nOpcion erronea ");
                     break;                
             }
-            clientes.removeAll(clientes);
-            contactos.removeAll(contactos);
-        } while(n != 9);    
+        } while(n != 8);    
     }
+    
+    private static final void menuXestionClientes() {
+        System.out.println("\n     XESTION CLIENTES");
+	System.out.println(" 1.- Escribir clientes.json");
+        System.out.println(" 2.- Escribir contactos.json");
+	System.out.println(" 3.- Leer y mostrar contactos.json");
+        System.out.println(" 4.- Escribir contactos.xml");
+	System.out.println(" 5.- Escribir contactos.dat");
+        System.out.println(" 6.- Leer, mostrar contactos.dat");
+	System.out.println(" 7.- Leer, mostrar contactos.xml");
+        System.out.println(" 8.- FINAL");
+        System.out.print("\nDame opcion: ");
+    }*/
     
 }

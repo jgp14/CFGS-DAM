@@ -10,6 +10,8 @@ import pedidos.Cliente;
 public class Contacto extends Cliente implements Serializable{
     private Enderezo enderezo;
 
+    public Contacto(){}
+
     public Contacto(String DNI, String nome, 
             String apelidos, Enderezo enderezo) {
         super(DNI, nome, apelidos);

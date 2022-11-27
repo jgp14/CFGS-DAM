@@ -10,6 +10,8 @@ public class Enderezo implements Serializable{
     private String localidade;
     private String rua;
     private int numero;
+    
+    public Enderezo(){}
 
     public Enderezo(String localidade, String rua, int numero) {
         this.localidade = localidade;

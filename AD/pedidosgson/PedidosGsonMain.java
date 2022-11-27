@@ -1,53 +1,42 @@
 package pedidosgson;
 
-import java.util.ArrayList;
 import java.util.List;
-import pedidos.LineaPedido;
 import pedidos.Pedido;
-import pedidos.UtilidadesJson;
-import utilidades.LeerMejor;
-import utilidades.UtilidadesXStream;
+import cliente.LeerMejor;
 
 /**
  *
  * @author dam205
  */
 public class PedidosGsonMain {
-        
-    public static void menuGsonPedidos() {
-	System.out.println();
-        System.out.println("     PEDIDOS");
-	System.out.println(" 1.- Escribir pedidos gson");
-        System.out.println(" 2.- Escribir peiddos xml");
-	System.out.println(" 3.- Leer y mostrar pedidos gson");
-        System.out.println(" 4.- FINAL");
-    } 
-    
+    //
     public static void main(String[] args){
         UtilidadesGson gson = new UtilidadesGson();
+        String ruta = "pedidosG";
+        List<Pedido> pedidos = gson.xeraGsonPedidos();
+        gson.creaGsonPedidos(ruta+".json", pedidos);
+        gson.crearXMLPedidosG(ruta);
+        gson.MostraGsonPedidos(gson.leGsonPedidos(ruta+".json"));
+    }//
+    
+    /*
+    public static void main(String[] args){
+        String ruta = "pedidosG";
+        UtilidadesGson gson = new UtilidadesGson();
+        List<Pedido> pedidos = gson.xeraGsonPedidos();
         int n = 0;
-        String ruta = "pedidos";         
-        UtilidadesXStream uxs = new UtilidadesXStream();
-        List<Pedido> pedidos = gson.xeraPedidos();
         do{ 
             menuGsonPedidos();
-            System.out.print("\nDame opcion: ");
             n = LeerMejor.datoShort();
             switch(n){
                 case 1:
-                    System.out.println("\nEscrita lista de pedidos en gson");
-                    gson.creaGsonPedidos(ruta+".json");    
+                    gson.creaGsonPedidos(ruta+".json", pedidos);   
                     break;
                 case 2:
-                    System.out.println("\nEscrita lista de pedidos en xml");
-                    uxs.listToXML(ruta, "pedido", "lineaPedido",
-                            Pedido.class,LineaPedido.class, pedidos);
+                    gson.crearXMLPedidosG(ruta);
                     break;
                 case 3:
-                    System.out.println("\nLeida lista de pedidos desde gson");
-                    pedidos.removeAll(pedidos);
-                    pedidos = gson.leGsonPedidos(ruta+".json");
-                    gson.MostraGsonPedidos(pedidos);
+                    gson.MostraGsonPedidos(gson.leGsonPedidos(ruta+".json"));
                     break;                    
                 case 4:                    
                     System.out.println("\nFINAL");
@@ -58,4 +47,13 @@ public class PedidosGsonMain {
             }
         } while(n !=4);        
     }
+
+    public static void menuGsonPedidos() {
+        System.out.println("\n     PEDIDOS");
+	System.out.println(" 1.- Escribir pedidos gson");
+        System.out.println(" 2.- Escribir peiddos xml");
+	System.out.println(" 3.- Leer y mostrar pedidos gson");
+        System.out.println(" 4.- FINAL");
+        System.out.print("\nDame opcion: ");
+    }*/
 }
