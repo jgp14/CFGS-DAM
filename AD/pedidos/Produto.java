@@ -1,18 +1,22 @@
 package pedidos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dam205
  */
-public class Produto {
+public class Produto implements Serializable{
     private int id;
     private String nomeProduto;
     private String descricion;
     private String foto;
-    private int prezo; 
+    private float prezo; 
 
+    public Produto(){}
+    
     public Produto(int id, String nomeProduto, 
-        String descricion, String foto, int prezo) {
+        String descricion, String foto, float prezo) {
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.descricion = descricion;
@@ -36,7 +40,7 @@ public class Produto {
         return foto;
     }
 
-    public int getPrezo() {
+    public float getPrezo() {
         return prezo;
     }
 
@@ -56,7 +60,7 @@ public class Produto {
         this.foto = foto;
     }
 
-    public void setPrezo(int prezo) {
+    public void setPrezo(float prezo) {
         this.prezo = prezo;
     }
 

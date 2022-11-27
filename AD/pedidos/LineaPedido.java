@@ -1,16 +1,19 @@
 package pedidos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dam205
  */
-public class LineaPedido {
+public class LineaPedido implements Serializable{
     private Produto produto;
     private int cantidade;
-    private int prezoTotal;
+    private float prezoTotal;
 
-    public LineaPedido(Produto produto, 
-            int cantidade) {
+    public LineaPedido(){}
+    
+    public LineaPedido(Produto produto, int cantidade) {
         this.produto = produto;
         this.cantidade = cantidade;
         this.prezoTotal = cantidade * produto.getPrezo();
@@ -24,7 +27,7 @@ public class LineaPedido {
         return cantidade;
     }
 
-    public int getPrezoTotal() {
+    public float getPrezoTotal() {
         return prezoTotal;
     }
 
@@ -34,6 +37,10 @@ public class LineaPedido {
 
     public void setCantidade(int cantidade) {
         this.cantidade = cantidade;
+    }
+
+    public void setPrezoTotal(float prezoTotal) {
+        this.prezoTotal = prezoTotal;
     }
 
     @Override

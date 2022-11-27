@@ -11,6 +11,8 @@ public class Cliente implements Serializable{
     private String nome;
     private String apelidos;
 
+    public Cliente(){}
+    
     public Cliente(String DNI, 
             String nome, String apelidos) {
         this.DNI = DNI;

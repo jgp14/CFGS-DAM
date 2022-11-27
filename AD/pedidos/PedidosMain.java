@@ -1,38 +1,45 @@
 package pedidos;
 
 import java.util.List;
-import utilidades.LeerMejor;
-import utilidades.UtilidadesXStream;
+import cliente.LeerMejor;
 
 /**
  *
  * @author dam205
  */
 public class PedidosMain {
-    
+    //
     public static void main(String[] args){
-        int n = 0;
-        UtilidadesJson json = new UtilidadesJson();        
-        String ruta = "pedidos";         
-        UtilidadesXStream uxs = new UtilidadesXStream();
+        String ruta = "pedidos";
+        UtilidadesJson json = new UtilidadesJson();
         List<Pedido> pedidos = json.xeraPedidos();
+        json.creaJsonPedidos(ruta+".json", pedidos);
+        json.crearXMLPedidos(ruta);
+        json.mostrarXMLPedidos(ruta+".xml");
+        System.out.println("\nLista de pedidos: "+ruta+".json");
+        json.MostraJsonPedidos(json.leJsonPedidos(ruta+".json"));
+    }//
+    
+    /*
+    public static void main(String[] args){              
+        String ruta = "pedidos";
+        UtilidadesJson json = new UtilidadesJson();  
+        List<Pedido> pedidos = json.xeraPedidos();
+        int n = 0;
         do{ 
-            json.menuPedidos();
-            System.out.print("\nDame opcion: ");
+            menuPedidos();            
             n = LeerMejor.datoShort();
             switch(n){
                 case 1:
-                    System.out.println("\nEscrita lista de pedidos en json");
-                    json.creaJsonPedidos(ruta+".json");    
+                    json.creaJsonPedidos(ruta+".json", pedidos);    
                     break;
                 case 2:
-                    System.out.println("\nEscrita lista de pedidos en xml");
-                    uxs.listToXML(ruta, "pedido", "lineaPedido", Pedido.class, 
-                            LineaPedido.class, pedidos);
+                    json.crearXMLPedidos(ruta);
+                    json.mostrarXMLPedidos(ruta+".xml");
                     break;
                 case 3:
-                    System.out.println("\nLeida lista de pedidos desde json");
-                    json.MostraJsonPedidos(ruta+".json");
+                    System.out.println("\nLista de pedidos: "+ruta+".json");
+                    json.MostraJsonPedidos(json.leJsonPedidos(ruta+".json"));
                     break;                    
                 case 4:                    
                     System.out.println("\nFINAL");
@@ -43,5 +50,14 @@ public class PedidosMain {
             }
         } while(n !=4);        
     }
+    
+    private static final void menuPedidos() {
+        System.out.println("\n     PEDIDOS");
+	System.out.println(" 1.- Escribir pedidos.json");
+        System.out.println(" 2.- Escribir peiddos.xml y Mostrar");
+	System.out.println(" 3.- Leer y Mostrar pedidos.json");
+        System.out.println(" 4.- FINAL");
+        System.out.print("\nDame opcion: ");
+    }*/
     
 }

@@ -1,16 +1,17 @@
 package pedidos;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author dam205
  */
-public class Pedido {
+public class Pedido implements Serializable{
     private int id;
     private Cliente cliente;
     private List<LineaPedido> lineasPedido;
-    private int importe;
+    private float importe;
     private boolean entregado;
 
     public Pedido(){}
@@ -36,7 +37,7 @@ public class Pedido {
         return lineasPedido;
     }
 
-    public int getImporte() {
+    public float getImporte() {
         return importe;
     }
 
@@ -56,7 +57,7 @@ public class Pedido {
         this.lineasPedido = lineasPedido;
     }
 
-    public void setImporte(int importe) {
+    public void setImporte(float importe) {
         this.importe = importe;
     }
 
@@ -71,7 +72,7 @@ public class Pedido {
                 ", importe=" + importe + ", entregado=" + entregado + '}';
     }    
     
-    private int calculaImporte(){
+    private float calculaImporte(){
         importe = 0;
         for(LineaPedido lineaPedido: lineasPedido)
             importe = importe + lineaPedido.getPrezoTotal();
