@@ -1,0 +1,25 @@
+{
+    "employees": [  
+        {
+            "name": "Sonoo",
+            "email": "sonoojaiswal1987@gmail.com"
+        },  
+        {
+            "name": "Rahul",
+            "email": "rahul32@gmail.com"
+        },  
+        {
+            "name": "John",
+            "email": "john32bob@gmail.com"
+        }  
+    ],
+    "jefe": {
+        "name" : "Marco",
+        "dni" : "1111111E"
+    },
+    "cancion" : {
+        "titulo" : "Let it be",
+        "artista" : "The Beatles",
+        "compositores" : ["John Lennon", "Paul McCartney", "Ringo Star"]
+    }
+}  
