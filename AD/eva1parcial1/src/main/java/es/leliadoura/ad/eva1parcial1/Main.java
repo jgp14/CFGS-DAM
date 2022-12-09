@@ -13,6 +13,8 @@ import es.leliadoura.ad.eva1parcial1.ejercicio2.CrearXmlModulos;
 import es.leliadoura.ad.eva1parcial1.ejercicio2.UtilXml;
 import es.leliadoura.ad.eva1parcial1.ejercicio3.ListaModulos;
 import es.leliadoura.ad.eva1parcial1.ejercicio3.UtilXstream;
+import es.leliadoura.ad.eva1parcial1.ejercicio4.UtilJson;
+import es.leliadoura.ad.eva1parcial1.ejercicio5.UtilGson;
 import java.util.List;
 import org.w3c.dom.Document;
 
@@ -72,6 +74,20 @@ public class Main {
         Document doc1 = utilXml.leeXML("modulosXS.xml");
         doc1 = utilXml.borraElementos("alumnos", doc);
         utilXml.guardaXML(doc1,"modulosXSin.xml");
+        
+        //EJERCICIO JSON SIMPLE
+        UtilJson json = new UtilJson();
+        json.gardaListaCiclos(ciclos, "ciclos.json");
+        json.mostrarListaCiclos(json.leeListaCiclos("ciclos.json"));
+        json.crearXMLCiclos("ciclos");
+        json.mostrarXMLCiclos("ciclosXS.xml");
+        
+        //EJERCICIO GSON
+        UtilGson gson = new UtilGson();
+        gson.creaGsonCiclos(ciclos, "ciclosG.json");      
+        System.out.println("Listado de ciclosG: ");
+        for(Ciclo c: gson.leeGsonCiclos("ciclosG.json"))
+            System.out.println(c);
     }
     
 }
