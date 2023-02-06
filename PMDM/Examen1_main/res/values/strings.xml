@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Examen1</string>
+    <string name="texto_resultado">El alumno nombre-alumno
+        \nha obtenido una calificación de nota \nen el módulo PMDM</string>
+</resources>
