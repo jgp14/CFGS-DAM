@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/apples"
+        android:title="Manzanas">
+        <menu>
+            <item android:id="@+id/golden"
+                android:title="Golden" />
+            <item android:id="@+id/doncella"
+                android:title="Verde Doncella" />
+        </menu>
+    </item>
+    <item android:id="@+id/bannana"
+        android:title="Platanos"/>
+    <item android:id="@+id/peras"
+        android:title="Peras" >
+        <menu>
+            <item android:id="@+id/conferencia"
+                android:title="Conferencia" />
+            <item android:id="@+id/limonera"
+                android:title="Limonera" />
+        </menu>
+    </item>
+
+</menu>
