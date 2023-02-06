@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/insert"
+        android:title="Insertar Cita"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/delete"
+        android:title="Borrar Cita"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/select"
+        android:title="Consultar Cita"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/update"
+        android:title="Modificar Cita"
+        app:showAsAction="collapseActionView" />
+</menu>
