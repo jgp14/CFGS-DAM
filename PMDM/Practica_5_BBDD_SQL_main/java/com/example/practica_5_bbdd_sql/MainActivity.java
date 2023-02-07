@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private TextView txId;
     private EditText edFecha, edHora, edAsunto;
-    private String sql, fecha, hora, asunto;
+    private String sql, date, hour, subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,21 +83,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        date = String.valueOf(edFecha.getText());
+        hour = String.valueOf(edHora.getText());
+        subject = String.valueOf(edAsunto.getText());
+
         switch (item.getItemId()) {
             case R.id.insert: {
-                insertCita();
+                insertCita(date, hour, subject);
                 return true;
             }
             case R.id.delete: {
-                deleteCita();
+                deleteCita(date, hour);
                 return true;
             }
             case R.id.select: {
-                selectCita();
+                selectCita(date, hour);
                 return true;
             }
             case R.id.update: {
-                updateCita();
+                updateCita(date, hour, subject);
                 return true;
             }
             default:
@@ -105,128 +109,129 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void insertCita() {
-        if (isValidAllData()) {
-            fecha = String.valueOf(edFecha.getText());
-            hora = String.valueOf(edHora.getText());
-            asunto = String.valueOf(edAsunto.getText());
+    public void insertCita(String date, String hour, String subject) {
+        if (isValidAllData(date, hour, subject)) {
+            sql = "SELECT "+DBSchema.Citas.DATE+", "+DBSchema.Citas.HOUR+
+                    " FROM "+DBSchema.Citas.TABLE_NAME+
+                    " WHERE "+DBSchema.Citas.DATE+" = '"+date+
+                    "' AND "+DBSchema.Citas.HOUR+" = '"+hour+"'";
 
-            sql = "SELECT fecha, hora FROM citas WHERE fecha = '"+fecha+"' AND hora = '"+hora+"'";
             Cursor c = db.rawQuery(sql, null);
-
             if (c.moveToFirst()) {
-                Toast.makeText(this, "Cita duplicada", Toast.LENGTH_LONG).show();
+                printToast("Cita duplicada");
             } else {
                 try {
-                    String name = fecha + "_" + hora + ".txt";
+                    String name = date + "_" + hour + ".txt";
                     OutputStreamWriter file = new
                             OutputStreamWriter(openFileOutput(name, Context.MODE_PRIVATE));
-                    file.write(asunto);
+                    file.write(subject);
                     file.flush();
                     file.close();
-                    Toast.makeText(this, "Asunto guardado", Toast.LENGTH_LONG).show();
-                    db.execSQL("INSERT INTO citas (fecha, hora) VALUES ('"+fecha+"', '"+hora+"')");
-                    Toast.makeText(this, "Cita guardada", Toast.LENGTH_LONG).show();
+                    printToast("Asunto guardado");
+                    db.execSQL("INSERT INTO "+DBSchema.Citas.TABLE_NAME+
+                            " (fecha, hora) VALUES ('"+date+"', '"+hour+"')");
+                    printToast("Cita guardada");
                     cleanData();
                 } catch (FileNotFoundException e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    printToast(e.getMessage());
                 } catch (IOException e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    printToast(e.getMessage());
                 }
             }
         }
     }
 
-    public void deleteCita() {
-        if(isValidData()){
-            fecha = String.valueOf(edFecha.getText());
-            hora = String.valueOf(edHora.getText());
-            String name = fecha + "_" + hora + ".txt";
-            File fichero = new File(getFilesDir(), name);
-            if (fichero.delete()) {
-                db.execSQL("DELETE FROM citas WHERE fecha LIKE '"+fecha+"' AND hora LIKE '"+hora+"';");
-                Toast.makeText(this, "Cita borrada", Toast.LENGTH_LONG).show();
+    private void printToast(String text){
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+    } // METODO PARA MOSTRAR TOAST LARGO PASANDO MENSAJE
+
+    public void deleteCita(String date, String hour) {
+        if(isValidData(date, hour)){
+            String name = date + "_" + hour + ".txt";
+            File file = new File(getFilesDir(), name);
+            if (file.delete()) {
+                db.execSQL("DELETE FROM "+DBSchema.Citas.TABLE_NAME+
+                        " WHERE "+DBSchema.Citas.DATE+ " LIKE '"+date+
+                        "' AND "+DBSchema.Citas.HOUR+" LIKE '"+ hour +"';");
+                printToast("Cita borrada");
                 cleanData();
             } else {
-                Toast.makeText(this, "Error al borrar la cita", Toast.LENGTH_LONG).show();
+                printToast("Error al borrar la cita");
             }
         }
     }
 
-    public void selectCita() {
-        if(isValidData()){
-            String sql = "SELECT * FROM citas WHERE fecha LIKE '" + edFecha.getText().toString() +
-                    "' AND hora LIKE '" + edHora.getText().toString() + "';";
+    public void selectCita(String date, String hour) {
+        if(isValidData(date, hour)){
+            sql = "SELECT * FROM "+DBSchema.Citas.TABLE_NAME+
+                    " WHERE "+DBSchema.Citas.DATE+" LIKE '" + date +
+                    "' AND "+DBSchema.Citas.HOUR+" LIKE '" + hour + "';";
             Cursor c = db.rawQuery(sql, null);
             if (c.moveToFirst()) {
                 txId.setText(c.getString(0));
-                edFecha.setText(c.getString(1));
-                edHora.setText(c.getString(2));
                 try {
-                    String name = fecha + "_" + hora + ".txt";
+                    String name = date + "_" + hour + ".txt";
                     BufferedReader file = new BufferedReader(new
                             InputStreamReader(openFileInput(name)));
                     StringBuilder sb = new StringBuilder();
-                    String lectura = file.readLine();
-                    while (lectura != null) {
-                        sb.append(lectura + "\n");
-                        lectura = file.readLine();
+                    String readLine = file.readLine();
+                    while (readLine != null) {
+                        sb.append(readLine + "\n");
+                        readLine = file.readLine();
                     }
                     edAsunto.setText(sb);
                     file.close();
-                    Toast.makeText(this, "Cita consultada", Toast.LENGTH_LONG).show();
+                    printToast("Cita consultada");
                 } catch (IOException e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    printToast(e.getMessage());
                 }
             } else {
-                Toast.makeText(this, "Cita no existe con eses datos", Toast.LENGTH_LONG).show();
+                printToast("Cita no existe con eses datos");
             }
         }
     }
 
-    public void updateCita() {
-        String sql = "SELECT * FROM citas WHERE fecha LIKE '" + edFecha.getText().toString() +
-                "' AND hora LIKE '" + edHora.getText().toString() + "';";
+    public void updateCita(String date, String hour, String subject) {
+        sql = "SELECT * FROM "+DBSchema.Citas.TABLE_NAME+
+                " WHERE "+DBSchema.Citas.DATE+" LIKE '" + date +
+                "' AND "+DBSchema.Citas.HOUR+" LIKE '" + hour + "';";
 
         Cursor c = db.rawQuery(sql, null);
         if (c.moveToFirst()) {
-            fecha = String.valueOf(edFecha.getText());
-            hora = String.valueOf(edHora.getText());
-            asunto = String.valueOf(edAsunto.getText());
-            String name = fecha + "_"+ hora + ".txt";
+            String name = date + "_"+ hour + ".txt";
             try {
                 OutputStreamWriter file =
                         new OutputStreamWriter(openFileOutput(name, Context.MODE_PRIVATE));
-                file.write(asunto);
+                file.write(subject);
                 file.flush();
                 file.close();
-                Toast.makeText(this, "Cita modificada", Toast.LENGTH_LONG).show();
+                printToast("Cita modificada");
                 cleanData();
             } catch (IOException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                printToast(e.getMessage());
             }
         } else
-            Toast.makeText(null, "Cita no existe con eses datos", Toast.LENGTH_LONG).show();
+            printToast("Cita no existe con eses datos");
     }
 
-    private boolean isValidData(){
-        Boolean valid = true;
-        if (edFecha.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Fecha es obligatoria. Ponla", Toast.LENGTH_LONG).show();
+    private boolean isValidData(String date, String hour){
+        boolean valid = true;
+        if (date.isEmpty()) {
+            printToast("Fecha es obligatoria. Ponla");
             valid = false;
         }
-        if (edHora.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Fecha es obligatoria. Ponla", Toast.LENGTH_LONG).show();
+        if (hour.isEmpty()) {
+            printToast("Hora es obligatoria. Ponla");
             valid = false;
         }
         return valid;
     }
 
-    private boolean isValidAllData() {
-        Boolean valid = true;
-        valid = isValidData();
-        if (edAsunto.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Asunto es obligatorio. Ponla", Toast.LENGTH_LONG).show();
+    private boolean isValidAllData(String date, String hour, String subject) {
+        boolean valid = true;
+        valid = isValidData(date, hour);
+        if (subject.isEmpty()) {
+            printToast("Asunto es obligatorio. Ponlo");
             valid = false;
         }
         return valid;

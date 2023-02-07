@@ -13,8 +13,7 @@
         android:background="@color/purple_200"
         android:ems="5"
         android:gravity="center"
-        android:inputType="numberSigned"
-        android:text=" Numero"
+        android:text="@string/numero"
         android:textColor="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,14 +29,14 @@
         android:background="@color/red_light"
         android:ems="5"
         android:gravity="center"
-        android:hint=" Fecha..."
+        android:hint="@string/fecha"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintTop_toBottomOf="@+id/id"
+        app:layout_constraintVertical_bias="0.048" />
 
     <EditText
         android:id="@+id/time"
@@ -46,29 +45,27 @@
         android:background="@color/red_light"
         android:ems="5"
         android:gravity="center"
-        android:hint=" Hora..."
+        android:hint="@string/hora"
         android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintHorizontal_bias="0.753"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintTop_toBottomOf="@+id/id"
+        app:layout_constraintVertical_bias="0.048" />
 
     <EditText
         android:id="@+id/subject"
         android:layout_width="match_parent"
-        android:layout_height="180sp"
+        android:layout_height="160sp"
         android:layout_margin="16sp"
-        android:layout_marginLeft="16sp"
-        android:layout_marginRight="16sp"
         android:background="@color/purple_200"
-        android:hint="Asunto..."
+        android:hint="@string/asunto"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        app:layout_constraintVertical_bias="0.303" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

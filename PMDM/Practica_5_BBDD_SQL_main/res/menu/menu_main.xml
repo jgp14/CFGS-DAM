@@ -6,21 +6,21 @@
 
     <item
         android:id="@+id/insert"
-        android:title="Insertar Cita"
+        android:title="@string/insert"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/delete"
-        android:title="Borrar Cita"
+        android:title="@string/delete"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/select"
-        android:title="Consultar Cita"
+        android:title="@string/select"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/update"
-        android:title="Modificar Cita"
+        android:title="@string/update"
         app:showAsAction="collapseActionView" />
 </menu>
