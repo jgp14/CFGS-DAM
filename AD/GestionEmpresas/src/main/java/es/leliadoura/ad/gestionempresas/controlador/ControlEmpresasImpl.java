@@ -5,16 +5,13 @@
 package es.leliadoura.ad.gestionempresas.controlador;
 
 import es.leliadoura.ad.gestionempresas.errores.ControlEmpresasException;
-import es.leliadoura.ad.gestionempresas.modelo.HibernateSession;
 import es.leliadoura.ad.gestionempresas.modelo.PersistenciaDatosImpl;
 import es.leliadoura.ad.gestionempresas.modelo.entity.Contrato;
 import es.leliadoura.ad.gestionempresas.modelo.entity.Empresa;
 import es.leliadoura.ad.gestionempresas.modelo.entity.Trabajador;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.hibernate.Session;
 
 /**
  *
@@ -74,20 +71,16 @@ public class ControlEmpresasImpl implements ControlEmpresas {
 
     @Override
     public Contrato consultaContratoActual(String DNI, String NIF) {
-        List<Contrato> contratos = new ArrayList<>();
         Contrato contrato = new Contrato();       
-        String string = "FROM Contrato c "
-                + "JOIN c.trabajador t "
-                + "JOIN c.empresa e "
-                + "WHERE t.DNI LIKE '"+DNI+"' "
-                + "AND e.NIF LIKE '"+NIF+"' "
-                + "AND c.fecFin IS NULL";
         if(DNI != null && !DNI.isEmpty() && !DNI.isBlank() 
             && NIF != null && !NIF.isEmpty() && !NIF.isBlank()){  
-            Session s = HibernateSession.getSession(); 
-            contratos = s.createQuery(string, Contrato.class).list();
-            if(contratos.size() == 1)
-                contrato = contratos.get(0);
+            PersistenciaDatosImpl pd = new PersistenciaDatosImpl();
+            List<Contrato> contratos = pd.consultaContratosActualesEmpresa(NIF);
+            for(Contrato c: contratos)
+                if(DNI.equals(c.getTrabajador().getDNI())){
+                    contrato = c;
+                    break;
+                }
         } 
         return contrato; 
     }

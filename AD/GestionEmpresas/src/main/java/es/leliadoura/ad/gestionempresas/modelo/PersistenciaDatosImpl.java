@@ -130,7 +130,7 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
 
     @Override
     public Contacto recuperaContacto(String correo, String nombre, String apellidos) {
-        List<Contacto> contactos = new ArrayList<>();
+        List<Contacto> contactos;
         Contacto contacto = new Contacto();
         String string = "FROM Contacto "
                 + "WHERE correo LIKE '"+correo+"' "
@@ -178,7 +178,7 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
 
     @Override
     public Contrato recuperaContrato(String DNI, String NIF, Date fecInicio) {
-        List<Contrato> contratos = new ArrayList<>();
+        List<Contrato> contratos;
         Contrato contrato = new Contrato();
         Fechas fechas = new Fechas();        
         String string = "FROM Contrato c "
@@ -215,7 +215,7 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
     @Override
     public List<Contrato> consultaContratosActualesEmpresa(String NIF) {
         List<Contrato> contratos = new ArrayList<>();
-        String string = "FROM Contrato c "
+        String string = "FROM "+Contrato.class.getName()+" c "
                 + "JOIN c.empresa e "
                 + "WHERE e.NIF LIKE '"+NIF+"' "
                 + "AND c.fecFin=NULL";        
@@ -229,7 +229,7 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
     @Override
     public List<Contrato> consultaContratosTrabajador(String DNI) {
         List<Contrato> contratos = new ArrayList<>();
-        String string = "FROM Contrato c "
+        String string = "FROM "+Contrato.class.getName()+" c "
                 + "JOIN c.trabajador t "
                 + "WHERE t.DNI LIKE '"+DNI+"'";        
         if(DNI != null && !DNI.isEmpty() && !DNI.isBlank()){
@@ -241,8 +241,8 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
 
     @Override
     public List<Empresa> consultaEmpresas() {
-        List<Empresa> empresas = new ArrayList<>();
-        String string = "FROM Empresa e";
+        List<Empresa> empresas;
+        String string = "FROM "+Empresa.class.getName()+" e";
         Session s = HibernateSession.getSession();
         empresas = s.createQuery(string, Empresa.class).list();
         return empresas;
@@ -250,8 +250,8 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
 
     @Override
     public List<Trabajador> consultaTrabajadores() {
-        List<Trabajador> trabajadores = new ArrayList<>();
-        String string = "FROM Trabajador t";
+        List<Trabajador> trabajadores;
+        String string = "FROM "+Trabajador.class.getName()+" t";
         Session s = HibernateSession.getSession();
         trabajadores = s.createQuery(string, Trabajador.class).list();
         return trabajadores;
@@ -259,8 +259,8 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
 
     @Override
     public List<Contrato> consultaContratos() {
-        List<Contrato> contratos = new ArrayList<>();
-        String string = "FROM Contrato c";
+        List<Contrato> contratos;
+        String string = "FROM "+Contrato.class.getName()+" c";
         Session s = HibernateSession.getSession();
         contratos = s.createQuery(string, Contrato.class).list();
         return contratos;
@@ -268,8 +268,8 @@ public class PersistenciaDatosImpl implements PersistenciaDatos{
 
     @Override
     public List<Contacto> consultaContactos() {
-        List<Contacto> contactos = new ArrayList<>();
-        String string = "FROM Contacto c";
+        List<Contacto> contactos;
+        String string = "FROM "+Contacto.class.getName()+" c";
         Session s = HibernateSession.getSession();
         contactos = s.createQuery(string, Contacto.class).list();
         return contactos;

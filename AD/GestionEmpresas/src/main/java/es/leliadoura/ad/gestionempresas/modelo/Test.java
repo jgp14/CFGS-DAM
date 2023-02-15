@@ -30,7 +30,7 @@ public class Test {
         List<Trabajador> trabajadores = gd.listaTrabajadores();
         List<Contacto> contactos = gd.listaContactos(); 
         List<Empresa> empresas = gd.listaEmpresas(contactos);//Antes contactos        
-        List<Contrato> contratos = gd.listaContratos(empresas);//Antes empresas    
+        List<Contrato> contratos = gd.listaContratos(empresas);//Antes empresas
 
         //INSERTAR TRABAJADORES Y CONTACTOS
         Session sesion = HibernateSession.getSession();        
