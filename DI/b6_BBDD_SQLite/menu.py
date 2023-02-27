@@ -1,7 +1,7 @@
 #Boletín 6. Bases de Datos SQLite
 import sqlite3
 
-__BBDD = "b6_BBDD_SQLite/menu.db"
+__BBDD = "menu.db"
 
 #EJERCICIO1
 def crear_bd():            
@@ -67,18 +67,19 @@ def agregar_plato():
     print("Categorias: ")
     for categoria in categorias:
         print(categoria)
-    id = 0
+
+    id = setInt(input("Dime id de categoria (1-"+str(n)+"): "))
     while(id <= 0 or id > n):
-        id = setInt(input("Dime id de categoria: "))
-        plato = input("Dime el nombre del plato: ")
-        print(str(id) + "  plato: "+plato)
-        if(id > 0 and id <= n):
-            try:
-                cursor.execute("INSERT INTO PLATO VALUES " + 
-                "(null, '"+plato+"', '"+str(id)+"')")
-                conexion.commit()
-            except sqlite3.IntegrityError:
-                print("IntegrityError: ya existe el plato")            
+        id = setInt(input("Dime id valido de categoria (1-"+str(n)+"): "))
+    plato = input("Dime el nombre del plato: ")
+    print(str(id) + "  plato: "+plato)
+    if(id > 0 and id <= n):
+        try:
+            cursor.execute("INSERT INTO PLATO VALUES " + 
+            "(null, '"+plato+"', '"+str(id)+"')")
+            conexion.commit()
+        except sqlite3.IntegrityError:
+            print("IntegrityError: ya existe el plato")            
 
     conexion.close()
 
@@ -93,17 +94,19 @@ def agregar_plato():
 def mostrar_menu():
     conexion = sqlite3.connect(__BBDD)
     cursor = conexion.cursor()
-    cursor.execute("SELECT c.nombre, p.nombre  " + 
+    cursor.execute("SELECT c.id, c.nombre, p.id, p.nombre  " + 
         "FROM PLATO p JOIN CATEGORIA c " + 
         "ON (p.id_categoria=c.id) "
-        "ORDER BY (c.id AND p.nombre)")
+        "ORDER BY (c.id AND p.id AND p.nombre)")
     platos = cursor.fetchall()
-    n = len(platos)
+    categoriaActual = ""
 
-    print("Platos: ")
-    print("CATEGORIA\tNOMBRE PLATO")
+    print("CATEGORIA\tNOMBRE DEL PLATO")
     for plato in platos:
-        print(plato)
+        if(f"{plato[0]}"!=categoriaActual):
+            categoriaActual = f"{plato[0]}"
+            print(f"{plato[1]}:")
+        print(f"\t\t{plato[2]}- {plato[3]}")
     conexion.close()
     
 
