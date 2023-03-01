@@ -1,0 +1,6 @@
+
+DATOS FECHA ACTUAL
+Dia: 28
+Mes: 2
+Anho: 2023
+Hora: 9
