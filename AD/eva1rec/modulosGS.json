@@ -1,0 +1,41 @@
+[{
+    "curso": 2,
+    "descripcion": "Proyecto",
+    "alumnos": [{
+            "nombre": "Carlos",
+            "dni": "10J"
+        }, {
+            "nombre": "Sofia",
+            "dni": "4D"
+        }, {
+            "nombre": "Laura",
+            "dni": "3C"
+        }],
+    "unidades": [{
+            "titulo": "Unidad 9",
+            "descripcion": "Swing"
+        }, {
+            "titulo": "Unidad 11",
+            "descripcion": "FX"
+        }]
+}, {
+    "curso": 1,
+    "descripcion": "Bases de datos",
+    "alumnos": [{
+            "nombre": "Carmen",
+            "dni": "11K"
+        }, {
+            "nombre": "Jose",
+            "dni": "6F"
+        }, {
+            "nombre": "Sofia",
+                "dni": "4D"
+            }],
+        "unidades": [{
+                "titulo": "Unidad 7",
+                "descripcion": "Concurrencia"
+            }, {
+                "titulo": "Unidad 4",
+                "descripcion": "Objetos"
+            }]
+    }]

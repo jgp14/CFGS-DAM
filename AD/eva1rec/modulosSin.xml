@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><modulos>
+    <modulo>
+        <curso>2</curso>
+        <descripcion>Acceso a Datos</descripcion>
+        <alumnos>
+            <alumno>
+                <nombre>Marcelo</nombre>
+                <dni>7G</dni>
+            </alumno>
+        </alumnos>
+        <unidades>
+            
+        </unidades>
+    </modulo>
+    <modulo>
+        <curso>2</curso>
+        <descripcion>FCT</descripcion>
+        <alumnos>
+            <alumno>
+                <nombre>Rodrigo</nombre>
+                <dni>9I</dni>
+            </alumno>
+            <alumno>
+                <nombre>Jose</nombre>
+                <dni>6F</dni>
+            </alumno>
+        </alumnos>
+        <unidades>
+            
+            
+        </unidades>
+    </modulo>
+    <modulo>
+        <curso>1</curso>
+        <descripcion>Programación</descripcion>
+        <alumnos>
+            <alumno>
+                <nombre>Juan</nombre>
+                <dni>2B</dni>
+            </alumno>
+        </alumnos>
+        <unidades>
+            
+            
+            
+        </unidades>
+    </modulo>
+</modulos>

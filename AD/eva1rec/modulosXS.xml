@@ -1,0 +1,72 @@
+<raiz>
+  <modulos>
+    <modulo>
+      <curso>2</curso>
+      <descripcion>Intefaces</descripcion>
+      <alumnos>
+        <alumno>
+          <nombre>Juan</nombre>
+          <dni>2B</dni>
+        </alumno>
+        <alumno>
+          <nombre>Maria</nombre>
+          <dni>5E</dni>
+        </alumno>
+      </alumnos>
+      <unidades>
+        <unidad>
+          <titulo>Unidad 11</titulo>
+          <descripcion>FX</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 9</titulo>
+          <descripcion>Swing</descripcion>
+        </unidad>
+      </unidades>
+    </modulo>
+    <modulo>
+      <curso>1</curso>
+      <descripcion>Lenguajes</descripcion>
+      <alumnos>
+        <alumno>
+          <nombre>Inés</nombre>
+          <dni>8H</dni>
+        </alumno>
+        <alumno>
+          <nombre>Sofia</nombre>
+          <dni>4D</dni>
+        </alumno>
+        <alumno>
+          <nombre>Maria</nombre>
+          <dni>5E</dni>
+        </alumno>
+        <alumno>
+          <nombre>Laura</nombre>
+          <dni>3C</dni>
+        </alumno>
+        <alumno>
+          <nombre>Jose</nombre>
+          <dni>6F</dni>
+        </alumno>
+        <alumno>
+          <nombre>Carlos</nombre>
+          <dni>10J</dni>
+        </alumno>
+      </alumnos>
+      <unidades>
+        <unidad>
+          <titulo>Unidad 7</titulo>
+          <descripcion>Concurrencia</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 1</titulo>
+          <descripcion>Ficheros</descripcion>
+        </unidad>
+        <unidad>
+          <titulo>Unidad 6</titulo>
+          <descripcion>XML</descripcion>
+        </unidad>
+      </unidades>
+    </modulo>
+  </modulos>
+</raiz>

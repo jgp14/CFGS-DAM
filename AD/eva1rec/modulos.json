@@ -1,0 +1,47 @@
+[{
+    "curso": 1,
+    "descripcion": "Lenguajes",
+    "alumnos": [{
+            "nombre": "Carlos",
+            "dni": "10J"
+        }, {
+            "nombre": "Rodrigo",
+            "dni": "9I"
+        }, {
+            "nombre": "Carmen",
+            "dni": "11K"
+        }, {
+            "nombre": "Pepe",
+            "dni": "1A"
+        }, {
+            "nombre": "Laura",
+            "dni": "3C"
+        }, {
+            "nombre": "Juan",
+            "dni": "2B"
+        }],
+    "unidades": [{
+            "titulo": "Unidad 9",
+            "descripcion": "Swing"
+        }]
+}, {
+    "curso": 1,
+    "descripcion": "Programación",
+    "alumnos": [{
+            "nombre": "Jose",
+            "dni": "6F"
+        }, {
+            "nombre": "Carlos",
+            "dni": "10J"
+        }, {
+            "nombre": "Carmen",
+            "dni": "11K"
+        }, {
+            "nombre": "Inés",
+            "dni": "8H"
+        }],
+    "unidades": [{
+            "titulo": "Unidad 6",
+            "descripcion": "XML"
+        }]
+}]

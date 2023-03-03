@@ -1,0 +1,66 @@
+  <modulos>
+    <modulo>
+        <curso>2</curso>
+        <descripcion>Acceso a Datos</descripcion>
+        <alumnos>
+            <alumno>
+                <nombre>Marcelo</nombre>
+                <dni>7G</dni>
+            </alumno>
+        </alumnos>
+        <unidades>
+            <unidad>
+                <titulo>Unidad 2</titulo>
+                <descripcion>Conectores</descripcion>
+            </unidad>
+        </unidades>
+    </modulo>
+    <modulo>
+        <curso>2</curso>
+        <descripcion>FCT</descripcion>
+        <alumnos>
+            <alumno>
+                <nombre>Rodrigo</nombre>
+                <dni>9I</dni>
+            </alumno>
+            <alumno>
+                <nombre>Jose</nombre>
+                <dni>6F</dni>
+            </alumno>
+        </alumnos>
+        <unidades>
+            <unidad>
+                <titulo>Unidad 7</titulo>
+                <descripcion>Concurrencia</descripcion>
+            </unidad>
+            <unidad>
+                <titulo>Unidad 5</titulo>
+                <descripcion>Seguridad</descripcion>
+            </unidad>
+        </unidades>
+    </modulo>
+    <modulo>
+        <curso>1</curso>
+        <descripcion>Programación</descripcion>
+        <alumnos>
+            <alumno>
+                <nombre>Juan</nombre>
+                <dni>2B</dni>
+            </alumno>
+        </alumnos>
+        <unidades>
+            <unidad>
+                <titulo>Unidad 8</titulo>
+                <descripcion>Hilos</descripcion>
+            </unidad>
+            <unidad>
+                <titulo>Unidad 4</titulo>
+                <descripcion>Objetos</descripcion>
+            </unidad>
+            <unidad>
+                <titulo>Unidad 11</titulo>
+                <descripcion>FX</descripcion>
+            </unidad>
+        </unidades>
+    </modulo>
+</modulos>
