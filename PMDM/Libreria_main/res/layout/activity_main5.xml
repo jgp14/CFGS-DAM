@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity5">
+
+    <!--Iput para autor-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifAutor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/autor"
+        android:maxEms="14"
+        android:minEms="14"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08"
+        app:startIconDrawable="@drawable/icons8_user_36">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefAutor"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/autor"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Iput para titulo-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifTitulo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/titulo_libro"
+        android:maxEms="14"
+        android:minEms="14"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifAutor"
+        app:layout_constraintVertical_bias="0.04"
+        app:startIconDrawable="@drawable/icons8_open_book_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefTitulo"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/titulo_libro"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Iput para fecha de reserva del  prestamo-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifDate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/fecha_aaaa_mm_dd"
+        android:maxEms="14"
+        android:minEms="14"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifTitulo"
+        app:layout_constraintVertical_bias="0.04"
+        app:startIconDrawable="@drawable/icons8_calendar_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefDate"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fecha_aaaa_mm_dd"
+            android:inputType="date"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Boton para acceder a mis libros prestados-->
+    <Button
+        android:id="@+id/btnMisPrestamos"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mis_prestamos"
+        android:textColor="@color/app_text_color"
+        android:textSize="16sp"
+        app:backgroundTint="@color/app_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toEndOf="@+id/btnCreaPrestamo"
+        app:layout_constraintTop_toBottomOf="@+id/tifDate"
+        app:layout_constraintVertical_bias="0.05"
+        app:strokeColor="@color/app_btn_border_color"
+        app:strokeWidth="2sp" />
+
+    <!--Boton para solicitar prestados-->
+    <Button
+        android:id="@+id/btnCreaPrestamo"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/solicitar"
+        android:textColor="@color/app_text_color"
+        android:textSize="16sp"
+        app:backgroundTint="@color/app_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifDate"
+        app:layout_constraintVertical_bias="0.05"
+        app:strokeColor="@color/app_btn_border_color"
+        app:strokeWidth="2sp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

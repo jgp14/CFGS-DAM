@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itemLend"
+        android:title="Nuevo\nprestamo"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/itemBooks"
+        android:title="Mis libros\nprestados"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/itemAdd"
+        android:title="Añadir libro"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/itemUpdate"
+        android:title="Modificar libro"
+        app:showAsAction="collapseActionView" />
+
+</menu>

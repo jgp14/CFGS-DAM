@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image_biblioteca"
+    tools:context=".MainActivity">
+
+    <!--BOTON DE ACCESO A LA LIBRERIA-->
+    <Button
+        android:id="@+id/btnAcceso"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:fontFamily="@font/times_new_roman"
+        android:gravity="center"
+        android:text="@string/accecer_libreria"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:backgroundTint="@color/app_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPortada"
+        app:layout_constraintVertical_bias="0.154"
+        app:strokeColor="@color/app_btn_border_color"
+        app:strokeWidth="2sp" />
+
+    <!--IMAGE VIEW DE PORTADA-->
+    <ImageView
+        android:id="@+id/imgPortada"
+        android:layout_width="match_parent"
+        android:layout_height="260sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@drawable/image_libreria_estantes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

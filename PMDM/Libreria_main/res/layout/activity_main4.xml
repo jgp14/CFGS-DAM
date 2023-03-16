@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity4">
+
+    <!--Boton de guardar libro-->
+    <Button
+        android:id="@+id/btnSaveBook"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar"
+        android:textColor="@color/app_text_color"
+        android:textSize="20sp"
+        app:autoSizeTextType="uniform"
+        app:backgroundTint="@color/app_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiGender"
+        app:layout_constraintVertical_bias="0.026"
+        app:rippleColor="@color/white"
+        app:strokeColor="@color/app_btn_border_color"
+        app:strokeWidth="2sp" />
+
+    <!--Switch de opciones avanzadas de editar libro-->
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchBookOptions"
+        style="@style/Widget.Material3.CompoundButton.Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:text="@string/datos_libro_avanzados"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toEndOf="@+id/btnSaveBook"
+        app:layout_constraintTop_toBottomOf="@+id/tiGender"
+        app:layout_constraintVertical_bias="0.0"
+        app:thumbTint="@color/app_btn_border_color"
+        app:trackTint="@color/app_color" />
+
+    <!--InputText de autor-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifAuthor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/autor"
+        android:maxEms="13"
+        android:minEms="13"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        app:startIconDrawable="@drawable/icons8_user_36">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefAuthor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/autor"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--InputText de titulo-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiTitle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/titulo"
+        android:maxEms="13"
+        android:minEms="13"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifAuthor"
+        app:startIconDrawable="@drawable/icons8_open_book_36">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefTitle"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/titulo"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--InputText de genero-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiGender"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/genero_literario"
+        android:maxEms="13"
+        android:minEms="13"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiTitle">
+
+        <AutoCompleteTextView
+            android:id="@+id/tiefGender"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/genero_literario"
+
+            android:inputType="textPersonName"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Fragment con datos avanzados de autor-->
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.libreria.BlankFragment2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchBookOptions"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout="@layout/fragment_blank2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

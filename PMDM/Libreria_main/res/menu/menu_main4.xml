@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itemInsert"
+        android:title="Guardar"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/itemUpdate"
+        android:title="Modificar libro"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/itemDelete"
+        android:title="Eliminar libro"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/itemSearchGoogle"
+        android:title="Buscar PDF Google"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/itemSearchDuck"
+        android:title="Buscar PDF DuckGo"
+        app:showAsAction="collapseActionView" />
+
+</menu>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity7">
+
+    <Button
+        android:id="@+id/btnRegister"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="6"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        android:text="@string/guardar"
+        android:textColor="@color/app_text_color"
+        android:textSize="20sp"
+        app:backgroundTint="@color/app_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifDate"
+        app:layout_constraintVertical_bias="0.01"
+        app:strokeColor="@color/app_btn_border_color"
+        app:strokeWidth="2sp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchUserAdvance"
+        style="@style/Widget.Material3.CompoundButton.Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/mas_ndatos"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
+        app:layout_constraintStart_toEndOf="@+id/btnRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tifDate"
+        app:layout_constraintVertical_bias="0.01"
+        app:thumbTint="@color/app_btn_border_color"
+        app:trackTint="@color/app_color" />
+
+    <TextView
+        android:id="@+id/link_to_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/times_new_roman"
+        android:gravity="center"
+        android:text="iniciar sesion"
+        android:textColor="@color/app_text_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifUser"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/usuario"
+        android:maxEms="14"
+        android:minEms="14"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        app:startIconDrawable="@drawable/icons8_user_36">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefAutor"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/usuario"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:maxEms="14"
+        android:minEms="14"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifUser"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/icons8_enter_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefEmail"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifDate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/verifica"
+        android:maxEms="14"
+        android:minEms="14"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:endIconMode="password_toggle"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifPasswordCheck"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/icons8_password_key_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefDate"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/verifica"
+            android:inputType="textPassword"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tifPasswordCheck"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:maxEms="14"
+        android:minEms="14"
+        app:boxStrokeColor="@color/app_color_dark"
+        app:boxStrokeWidth="2sp"
+        app:endIconMode="password_toggle"
+        app:hintTextColor="@color/app_color_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tifEmail"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/icons8_password_key_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiefPasswordCheck"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:textColorHint="@color/app_text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.example.libreria.BlankFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/link_to_login"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout="@layout/fragment_blank" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
