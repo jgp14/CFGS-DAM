@@ -19,7 +19,7 @@
 | DI | [DAM2-JGP/tree/main/DI][di] |
 | PMDM | [DAM2-JGP/tree/main/PMDM][pmdm] |
 | PRO | [DAM2-JGP/tree/main/PRO][pro] |
-| PSP | [DAM2-JGP/tree/main/PSP][PlGa] |
+| PSP | [DAM2-JGP/tree/main/PSP][psp] |
    
    [ad]: <https://github.com/jgp14/DAM2-JGP/tree/main/AD>
    [cd]: <https://github.com/jgp14/DAM2-JGP/tree/main/CD>
